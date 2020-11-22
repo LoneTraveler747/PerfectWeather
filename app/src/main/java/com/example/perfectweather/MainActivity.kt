@@ -1,42 +1,40 @@
 package com.example.perfectweather
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import android.text.format.DateUtils
 import android.util.Log
-import androidx.fragment.app.Fragment
-import com.example.perfectweather.fragments.BaselineFragment
-import com.example.perfectweather.fragments.HomeFragment
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.Navigation
+import androidx.navigation.ui.NavigationUI
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.perfectweather.Model.ModelWeather
 import kotlinx.android.synthetic.main.activity_main.*
-import java.security.Timestamp
+import retrofit2.Call
+import retrofit2.Response
+import java.text.SimpleDateFormat
 import java.util.*
+import javax.security.auth.callback.Callback
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-      var  time = ("1605996452"+"000").toLong()
-        var dt = DateUtils.formatDateTime(this, time , DateUtils.FORMAT_SHOW_TIME)
-        Log.i("DT", dt)
-
-        val homeFragment = HomeFragment()
-        val baselineFragment = BaselineFragment()
-
-        makeCurrentFragment(homeFragment)
-
-        bottom_navigation.setOnNavigationItemSelectedListener {
-            when (it.itemId) {
-                R.id.ic_baseline -> makeCurrentFragment(homeFragment)
-                R.id.ic_baseline_brightness -> makeCurrentFragment(baselineFragment)
-            }
-            true
-        }
+        val navController = Navigation.findNavController(this,R.id.nav_host_fragment)
+        NavigationUI.setupWithNavController(bottom_navigation,navController)
+//        var call: retrofit2.Call<ModelWeather> =
+//            APIWeatherService.invoke().getCurrentWeather("Москва")
+//
+//        call.enqueue(object : retrofit2.Callback<ModelWeather> {
+//            override fun onFailure(call: Call<ModelWeather>, t: Throwable) {
+//                Log.e("error", t.message.toString())
+//            }
+//
+//            override fun onResponse(call: Call<ModelWeather>, response: Response<ModelWeather>) {
+//                    Log.i("test", response.body()!!.dt.toString())
+//            }
+//        })
     }
-
-    private fun makeCurrentFragment(fragment: Fragment) =
-        supportFragmentManager.beginTransaction().apply {
-            replace(R.id.fl_wrapper, fragment)
-            commit()
-        }
 }

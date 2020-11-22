@@ -40,34 +40,43 @@ const val URL_IMG = "http://openweathermap.org/img/wn/"
 class ModelWeather(
     @SerializedName("weather")
     @Expose
-    var weather: Json_Weather,
+    var weather: ArrayList<Json_Weather>?
+
+) : Parcelable {
 
     @SerializedName("main")
     @Expose
-    var main: Json_Main,
+    var main: Json_Main? = null
 
     @SerializedName("wind")
     @Expose
-    var wind: Json_Wind,
+    var wind: Json_Wind? = null
 
     @SerializedName("clouds")
     @Expose
-    var clouds: Json_Clouds
+    var clouds: Json_Clouds? = null
 
-) : Parcelable {}
+    @SerializedName("dt")
+    @Expose
+    var dt: String? = null
+
+    @SerializedName("name")
+    @Expose
+    var name: String? = null
+}
 
 @Parcelize
 class Json_Clouds(
     @SerializedName("all")
     @Expose
-    var all : String
-):Parcelable {}
+    var all: String
+) : Parcelable {}
 
 @Parcelize
 class Json_Wind(
     @SerializedName("speed")
     @Expose
-    var speed : String
+    var speed: String
 ) : Parcelable {}
 
 @Parcelize
@@ -84,26 +93,26 @@ class Json_Weather(
 class Json_Main(
     @SerializedName("temp")
     @Expose
-    var temp: Int,
+    var temp: String,
 
     @SerializedName("feels_like")
     @Expose
-    var feels_like: Int,
+    var feels_like: String,
 
     @SerializedName("temp_min")
     @Expose
-    var temp_min: Int,
+    var temp_min: String,
 
     @SerializedName("temp_max")
     @Expose
-    var temp_max: Int,
+    var temp_max: String,
 
     @SerializedName("humidity")
     @Expose
-    var humidity: Int,
+    var humidity: String,
 
     @SerializedName("pressure")
     @Expose
-    var pressure: Int
+    var pressure: String
 
 ) : Parcelable {}
