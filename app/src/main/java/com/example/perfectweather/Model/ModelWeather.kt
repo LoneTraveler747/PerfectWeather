@@ -5,35 +5,6 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
-/*
-   weather: {
-     "description" - название погодных условий
-    http://openweathermap.org/img/wn/+ "icon" - картинка + .png
-   }
-   */
-
-/*"main": {
-    "temp": -1, - текущая погода
-    "feels_like": -4.53, - погода которую ощущает человек
-    "temp_min": -1, - минимальная температура
-    "temp_max": -1, - максимальная температура
-    "humidity" - влажность %
-    "pressure" - давление
-}*/
-
-/*
-    "wind": {
-        "speed": 2, - скорость ветра м/с
-    },
-*/
-
-/*
-"clouds": {
-    "all" - облачность %
-},
-* */
-// dt - время
-
 const val URL_IMG = "http://openweathermap.org/img/wn/"
 
 @Parcelize
