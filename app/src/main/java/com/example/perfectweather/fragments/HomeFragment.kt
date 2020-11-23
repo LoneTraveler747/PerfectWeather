@@ -112,9 +112,9 @@ class HomeFragment : Fragment() {
             if (scrol.visibility == View.VISIBLE) {
                 val editor: SharedPreferences.Editor = shared.edit()
                 var City = shared.all
-                if (!City!!.contains(name.text.toString())) {
+                if (!City!!.containsValue(name.text.toString())) {
                     editor.putString(
-                        "${name.text.toString()}",
+                        "${City.size+1}",
                         name.text.toString()
                     )
                     editor.apply()
@@ -132,7 +132,6 @@ class HomeFragment : Fragment() {
                 boolean = true
             }
         }
-
         return v
     }
 }
